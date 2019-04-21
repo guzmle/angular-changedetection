@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GenerateListService} from '../../../shared/services/generate-list.service';
+import {GenerateListService} from '../../../../shared/services/generate-list.service';
 
 @Component({
   selector: 'app-bad-list',
