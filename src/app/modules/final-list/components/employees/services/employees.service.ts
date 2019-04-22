@@ -3,29 +3,26 @@ import {Injectable} from '@angular/core';
 import {GenerateListService} from '../../../../../shared/services/generate-list.service';
 
 import {EmployeesModel} from '../models/employees.model';
-import {AppUtils} from '../../../../../shared/utils/AppUtils';
 
 @Injectable()
 export class EmployeesService {
 
-  constructor(private model: EmployeesModel, private remote: GenerateListService) {
+  constructor(private _model: EmployeesModel, private remote: GenerateListService) {
   }
 
   public getData() {
-    this.model.list = this.remote.generate();
-
-    return this.model.list;
+    this._model.setData(this.remote.generate());
   }
 
   public addEmployee(name) {
-    this.model.list.unshift({label: name, num: AppUtils.generateNum()});
-
-    return this.model.list;
+    this._model.add(name);
   }
 
   public removeEmployee(position) {
-    this.model.list.splice(position, 1);
+    this._model.remove(position);
+  }
 
-    return this.model.list;
+  public get model() {
+    return this._model.list.asObservable();
   }
 }

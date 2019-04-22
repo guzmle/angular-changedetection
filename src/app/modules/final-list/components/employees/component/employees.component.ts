@@ -17,17 +17,18 @@ export class EmployeesComponent implements OnInit {
 
 
   public constructor(private service: EmployeesService) {
+    this.service.model.subscribe(value => this.data = value);
   }
 
   public ngOnInit(): void {
-    this.data = this.service.getData();
+    this.service.getData();
   }
 
   public add(label) {
-    this.data = this.service.addEmployee(label);
+    this.service.addEmployee(label);
   }
 
   public remove(position) {
-    this.data = this.service.removeEmployee(position);
+    this.service.removeEmployee(position);
   }
 }
