@@ -1,22 +1,27 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {BadListComponent} from './modules/bad-list/views/list/bad-list.component';
-import {OptimizedListComponent} from './modules/optimized-list/views/list/optimized-list.component';
-import {FinalListComponent} from './modules/final-list/views/list/component/final-list.component';
+import {BadRouting} from 'projects/bad/src/app/view/bad-routing.module';
+import {OptimeRouting} from 'projects/optime/src/app/view/optime-routing.module';
+import {FinallyRouting} from 'projects/finally/src/app/view/finally-routing.module';
 
 const routes: Routes = [
   {
-    path: 'bad-list',
-    component: BadListComponent
+    path: 'bad',
+    loadChildren: () => BadRouting
   },
   {
-    path: 'optimized-list',
-    component: OptimizedListComponent
+    path: 'optime',
+    loadChildren: () => OptimeRouting
   },
   {
-    path: 'final-list',
-    component: FinalListComponent
+    path: 'final',
+    loadChildren: () => FinallyRouting
   },
+  {
+    path: '',
+    redirectTo: 'bad',
+    pathMatch: 'full'
+  }
 ];
 
 @NgModule({
